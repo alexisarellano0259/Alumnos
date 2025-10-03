@@ -12,7 +12,8 @@ class AlumnoController extends Controller
      */
     public function index()
     {
-        //
+        $alumnos = \App\Models\Alumno::all(); // Trae todos los alumnos
+    return view('alumnos.index', compact('alumnos'));
     }
 
     /**
@@ -20,7 +21,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        //
+        return view('alumnos.create');//
     }
 
     /**
