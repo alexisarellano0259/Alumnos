@@ -31,16 +31,16 @@ class AlumnoController extends Controller
     {
         // Validación de los campos
          $request->validate([
-        'codigo' => 'required',
-        'nombre' => 'required',
-        'correo' => 'required|email|unique:alumnos,correo',
-        'fecha_nacimiento' => 'required|date',
-        'sexo' => 'required',
-        'carrera' => 'required',
-    ]);
+            'codigo' => 'required',
+            'nombre' => 'required',
+            'correo' => 'required|email|unique:alumnos,correo',
+            'fecha_nacimiento' => 'required|date',
+            'sexo' => 'required',
+            'carrera' => 'required',
+       ]);
 
     // Guardar alumno
-    Alumno::create($request->all());
+         Alumno::create($request->all());
 
     // Redirigir al listado con mensaje
     return redirect()->route('alumnos.index')->with('success', 'Alumno agregado correctamente');
@@ -52,7 +52,7 @@ class AlumnoController extends Controller
      */
     public function show(Alumno $alumno)
     {
-        //
+        return view('alumnos.show', compact('alumno'));
     }
 
     /**
@@ -60,7 +60,8 @@ class AlumnoController extends Controller
      */
     public function edit(Alumno $alumno)
     {
-        //
+        //$alumno = Alumno::findOrFail($id);
+    return view('alumnos.edit', compact('alumno'));
     }
 
     /**
@@ -68,7 +69,19 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, Alumno $alumno)
     {
-        //
+         $request->validate([
+        'codigo' => 'required',
+        'nombre' => 'required',
+        'correo' => 'required|email|unique:alumnos,correo,' . $id,
+        'fecha_nacimiento' => 'required|date',
+        'sexo' => 'required',
+        'carrera' => 'required',
+    ]);
+
+    $alumno = Alumno::findOrFail($id);
+    $alumno->update($request->all());
+
+    return redirect()->route('alumnos.index')->with('success', 'Alumno actualizado correctamente.');
     }
 
     /**
