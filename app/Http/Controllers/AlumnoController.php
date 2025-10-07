@@ -29,7 +29,22 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validación de los campos
+         $request->validate([
+        'codigo' => 'required',
+        'nombre' => 'required',
+        'correo' => 'required|email|unique:alumnos,correo',
+        'fecha_nacimiento' => 'required|date',
+        'sexo' => 'required',
+        'carrera' => 'required',
+    ]);
+
+    // Guardar alumno
+    Alumno::create($request->all());
+
+    // Redirigir al listado con mensaje
+    return redirect()->route('alumnos.index')->with('success', 'Alumno agregado correctamente');
+
     }
 
     /**

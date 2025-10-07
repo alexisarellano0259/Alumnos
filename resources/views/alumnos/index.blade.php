@@ -15,7 +15,8 @@
                 <th>Código</th>
                 <th>Nombre</th>
                 <th>Correo</th>
-                <th>Acciones</th>
+                <th>Sexo</th>
+                <th>Carrera<th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +26,8 @@
                     <td>{{ $alumno->codigo }}</td>
                     <td>{{ $alumno->nombre }}</td>
                     <td>{{ $alumno->correo }}</td>
+                    <td>{{ $alumno->sexo }}</td>
+                    <td>{{ $alumno->carrera }}</td>
                     <td>
                         <a href="{{ route('alumnos.show', $alumno->id) }}" class="btn btn-info btn-sm">Ver</a>
                         <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-warning btn-sm">Editar</a>
