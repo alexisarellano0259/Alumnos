@@ -1,48 +1,45 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4">
-    <h2>Editar Alumno</h2>
+<h1>Editar Alumno</h1>
 
-    <form action="{{ route('alumnos.update', $alumno->id) }}" method="POST">
-        @csrf
-        @method('PUT') <!-- Necesario para que Laravel entienda que es una actualización -->
+<form action="{{ route('alumnos.update', $alumno->id) }}" method="POST">
+    @csrf
+    @method('PUT')
 
-        <div class="mb-3">
-            <label for="codigo" class="form-label">Código:</label>
-            <input type="text" name="codigo" class="form-control" value="{{ $alumno->codigo }}" required>
-        </div>
+    <div class="mb-3">
+        <label>Código</label>
+        <input type="text" name="codigo" value="{{ old('codigo', $alumno->codigo) }}" class="form-control">
+    </div>
 
-        <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre:</label>
-            <input type="text" name="nombre" class="form-control" value="{{ $alumno->nombre }}" required>
-        </div>
+    <div class="mb-3">
+        <label>Nombre</label>
+        <input type="text" name="nombre" value="{{ old('nombre', $alumno->nombre) }}" class="form-control">
+    </div>
 
-        <div class="mb-3">
-            <label for="correo" class="form-label">Correo:</label>
-            <input type="email" name="correo" class="form-control" value="{{ $alumno->correo }}" required>
-        </div>
+    <div class="mb-3">
+        <label>Correo</label>
+        <input type="email" name="correo" value="{{ old('correo', $alumno->correo) }}" class="form-control">
+    </div>
 
-        <div class="mb-3">
-            <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento:</label>
-            <input type="date" name="fecha_nacimiento" class="form-control" value="{{ $alumno->fecha_nacimiento }}" required>
-        </div>
+    <div class="mb-3">
+        <label>Fecha de nacimiento</label>
+        <input type="date" name="fecha_nacimiento" value="{{ old('fecha_nacimiento', $alumno->fecha_nacimiento) }}" class="form-control">
+    </div>
 
-        <div class="mb-3">
-            <label for="sexo" class="form-label">Sexo:</label>
-            <select name="sexo" class="form-select" required>
-                <option value="Masculino" {{ $alumno->sexo == 'Masculino' ? 'selected' : '' }}>Masculino</option>
-                <option value="Femenino" {{ $alumno->sexo == 'Femenino' ? 'selected' : '' }}>Femenino</option>
-            </select>
-        </div>
+    <div class="mb-3">
+        <label>Sexo</label>
+        <select name="sexo" class="form-select">
+            <option value="M" {{ old('sexo', $alumno->sexo) == 'M' ? 'selected' : '' }}>Masculino</option>
+            <option value="F" {{ old('sexo', $alumno->sexo) == 'F' ? 'selected' : '' }}>Femenino</option>
+        </select>
+    </div>
 
-        <div class="mb-3">
-            <label for="carrera" class="form-label">Carrera:</label>
-            <input type="text" name="carrera" class="form-control" value="{{ $alumno->carrera }}" required>
-        </div>
+    <div class="mb-3">
+        <label>Carrera</label>
+        <input type="text" name="carrera" value="{{ old('carrera', $alumno->carrera) }}" class="form-control">
+    </div>
 
-        <button type="submit" class="btn btn-success">Guardar cambios</button>
-        <a href="{{ route('alumnos.index') }}" class="btn btn-secondary">Cancelar</a>
-    </form>
-</div>
+    <button type="submit" class="btn btn-success">Actualizar</button>
+</form>
 @endsection

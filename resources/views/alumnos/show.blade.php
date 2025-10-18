@@ -1,21 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4">
-    <h2>Detalle del Alumno</h2>
+<h1>Detalle del Alumno</h1>
 
-    <div class="card mt-3">
-        <div class="card-body">
-            <p><strong>Código:</strong> {{ $alumno->codigo }}</p>
-            <p><strong>Nombre:</strong> {{ $alumno->nombre }}</p>
-            <p><strong>Correo:</strong> {{ $alumno->correo }}</p>
-            <p><strong>Fecha de nacimiento:</strong> {{ $alumno->fecha_nacimiento }}</p>
-            <p><strong>Sexo:</strong> {{ $alumno->sexo }}</p>
-            <p><strong>Carrera:</strong> {{ $alumno->carrera }}</p>
-        </div>
-    </div>
+<ul class="list-group">
+    <li class="list-group-item"><strong>ID:</strong> {{ $alumno->id }}</li>
+    <li class="list-group-item"><strong>Código:</strong> {{ $alumno->codigo }}</li>
+    <li class="list-group-item"><strong>Nombre:</strong> {{ $alumno->nombre }}</li>
+    <li class="list-group-item"><strong>Correo:</strong> {{ $alumno->correo }}</li>
+    <li class="list-group-item"><strong>Fecha de Nacimiento:</strong> {{ $alumno->fecha_nacimiento }}</li>
+    <li class="list-group-item"><strong>Sexo:</strong> {{ $alumno->sexo }}</li>
+    <li class="list-group-item"><strong>Carrera:</strong> {{ $alumno->carrera }}</li>
+</ul>
 
-    <a href="{{ route('alumnos.index') }}" class="btn btn-secondary mt-3">Volver al listado</a>
-    <a href="{{ route('alumnos.edit', $alumno->id) }}" class="btn btn-primary mt-3">Editar alumno</a>
-</div>
+<a href="{{ route('alumnos.index') }}" class="btn btn-secondary mt-3">Volver</a>
 @endsection
+
